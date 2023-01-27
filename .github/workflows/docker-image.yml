@@ -27,4 +27,7 @@ jobs:
       run: mvn -B package --file pom.xml
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: |
+        echo ${{ secrets.DOCKER_TOKEN }} | docker login -u nikosnikolaidis --password-stdin
+        docker build . --file Dockerfile --tag nikosnikolaidis/master-cicd-service:$(date +%s)
+        docker push nikosnikolaidis/master-cicd-service:$(date +%s)
