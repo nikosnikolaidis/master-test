@@ -29,5 +29,5 @@ jobs:
     - name: Build the Docker image
       run: |
         echo ${{ secrets.DOCKER_TOKEN }} | docker login -u nikosnikolaidis --password-stdin
-        docker build . --file Dockerfile --tag nikosnikolaidis/master-cicd-service:$(date +%s)
-        docker push nikosnikolaidis/master-cicd-service:$(date +%s)
+        docker build . --file Dockerfile --tag nikosnikolaidis/master-cicd-service:$(date +'%Y-%m-%d')
+        docker push nikosnikolaidis/master-cicd-service:$(date +'%Y-%m-%d')
